@@ -1,4 +1,4 @@
-## ================================ GAZEBO ================================
+##  GAZEBO 
 # Start the controllers using roslaunch
 1) TERMINAL 1:
 roslaunch thesis_control j2n6s300_gazebo.launch
@@ -15,7 +15,7 @@ rosrun thesis_demo imp_control.py
 
 
 
-## ================================ ROBOT =================================
+##  ROBOT 
 # 1) TERMINAL 1:
 roslaunch kinova_bringup kinova_robot.launch kinova_robotType:=j2n6s300 use_urdf:=true
 
