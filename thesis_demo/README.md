@@ -68,4 +68,5 @@ rosrun thesis_demo calibration_robot.py
 
 # To acess API Funcs:
 rosrun kinova_driver kinova_api_funcs
+# and in python:
 rosrun thesis_demo kinova_api_wrapper.py
