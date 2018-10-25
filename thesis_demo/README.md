@@ -66,8 +66,6 @@ rosrun thesis_demo imp_control_robot.py
 ## Calibration Robot
 rosrun thesis_demo calibration_robot.py
 
-## ========================================================================
-
 # To acess API Funcs:
 rosrun kinova_driver kinova_api_funcs
 rosrun thesis_demo kinova_api_wrapper.py
