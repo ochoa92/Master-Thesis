@@ -1,0 +1,143 @@
+j2n6s300:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 100
+
+  # Effort joint Controllers ---------------------------------------
+  joint_1_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: j2n6s300_joint_1
+
+  joint_2_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: j2n6s300_joint_2
+
+  joint_3_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: j2n6s300_joint_3
+
+  joint_4_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: j2n6s300_joint_4
+
+  joint_5_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: j2n6s300_joint_5
+
+  joint_6_torque_controller:
+    type: effort_controllers/JointEffortController
+    joint: j2n6s300_joint_6
+
+  # Position Controllers ---------------------------------------
+  finger_1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j2n6s300_joint_finger_1
+    pid: {p: 10.0, i: 0.0, d: 0.0}
+
+  finger_2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j2n6s300_joint_finger_2
+    pid: {p: 10.0, i: 0.0, d: 0.0}
+
+  finger_3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: j2n6s300_joint_finger_3
+    pid: {p: 10.0, i: 0.0, d: 0.0}
+
+  # Trajectory Controllers ---------------------------------------
+  effort_finger_trajectory_controller:
+    constraints:
+      goal_time: 1.0
+      j2n6s300_joint_finger_1:
+        goal: 0.02
+        trajectory: 0.05
+      j2n6s300_joint_finger_2:
+        goal: 0.02
+        trajectory: 0.05
+      j2n6s300_joint_finger_3:
+        goal: 0.02
+        trajectory: 0.05
+      stopped_velocity_tolerance: 0.02
+    gains:
+      j2n6s300_joint_finger_1:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+      j2n6s300_joint_finger_2:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+      j2n6s300_joint_finger_3:
+        d: 0
+        i: 0
+        i_clamp: 1
+        p: 10
+    joints:
+    - j2n6s300_joint_finger_1
+    - j2n6s300_joint_finger_2
+    - j2n6s300_joint_finger_3
+    type: effort_controllers/JointTrajectoryController
+  effort_joint_trajectory_controller:
+    constraints:
+      goal_time: 1.0
+      j2n6s300_joint_1:
+        goal: 0.02
+        trajectory: 0.05
+      j2n6s300_joint_2:
+        goal: 0.02
+        trajectory: 0.05
+      j2n6s300_joint_3:
+        goal: 0.02
+        trajectory: 0.05
+      j2n6s300_joint_4:
+        goal: 0.02
+        trajectory: 0.05
+      j2n6s300_joint_5:
+        goal: 0.02
+        trajectory: 0.05
+      j2n6s300_joint_6:
+        goal: 0.02
+        trajectory: 0.05
+      stopped_velocity_tolerance: 0.02
+    gains:
+      j2n6s300_joint_1:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      j2n6s300_joint_2:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      j2n6s300_joint_3:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 5000
+      j2n6s300_joint_4:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 500
+      j2n6s300_joint_5:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 200
+      j2n6s300_joint_6:
+        d: 0
+        i: 0
+        i_clamp: 10
+        p: 500
+    joints:
+    - j2n6s300_joint_1
+    - j2n6s300_joint_2
+    - j2n6s300_joint_3
+    - j2n6s300_joint_4
+    - j2n6s300_joint_5
+    - j2n6s300_joint_6
+    type: effort_controllers/JointTrajectoryController

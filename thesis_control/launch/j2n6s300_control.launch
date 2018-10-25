@@ -1,0 +1,37 @@
+<launch>
+  <arg name="kinova_robotType" default="j2n6s300"/>
+  <arg name="kinova_robotName" default="$(arg kinova_robotType)"/>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find thesis_control)/config/$(arg kinova_robotName)_control.yaml" command="load"/>
+
+  <!--  load the Joint trajectory controller-->
+  <node name="trajectory_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/$(arg kinova_robotName)" args="joint_state_controller
+                                                        effort_joint_trajectory_controller
+                                                        effort_finger_trajectory_controller"/>
+
+
+  <!-- load the joint effort controller and joint by joint position controllers for fingers-->
+  <node name="torque_controller" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/$(arg kinova_robotName)" args="--stopped joint_1_torque_controller
+                                                                  joint_2_torque_controller
+                                                                  joint_3_torque_controller
+                                                                  joint_4_torque_controller
+                                                                  joint_5_torque_controller
+                                                                  joint_6_torque_controller
+                                                                  finger_1_position_controller
+                                                                  finger_2_position_controller
+                                                                  finger_3_position_controller"/>
+
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+    <remap from="/joint_states" to="/$(arg kinova_robotName)/joint_states"/>
+  </node>
+
+  <!-- Create node to command robot to home pose-->
+  <node name="command_robot_home_pose" pkg="thesis_control" type="move_home.py" respawn="false" output="screen"/>
+
+</launch>
